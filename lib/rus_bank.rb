@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'savon'
 
 class RusBank
@@ -7,16 +8,6 @@ class RusBank
 
   def operations
     @client.operations
-  end
-
-  def CreditInfoByIntCodeXML(internal_code)
-    params = { "InternalCode" => internal_code }
-    response = call(:credit_info_by_int_code_xml, params)
-    if response.nil?
-      nil
-    else
-      response[:credit_org_info][:co]
-    end
   end
 
   def BicToIntCode(bic)
@@ -29,7 +20,26 @@ class RusBank
     call(:bic_to_reg_number, params)
   end
 
-  def call(method, params)
+  def EnumBicXML
+    response = call(:enum_bic_xml)
+    if response.nil?
+      nil
+    else
+      response[:enum_bic][:bic]
+    end
+  end
+
+  def CreditInfoByIntCodeXML(internal_code)
+    params = { "InternalCode" => internal_code }
+    response = call(:credit_info_by_int_code_xml, params)
+    if response.nil?
+      nil
+    else
+      response[:credit_org_info][:co]
+    end
+  end
+
+  def call(method, params = nil)
     response = @client.call(method, message: params).to_hash[(method.to_s + "_response").to_sym][(method.to_s + "_result").to_sym]
     if response == "-1" or response.to_s.include?("NotFound")           # Разные методы сервиса возвращают ответ в разном формате
       return nil
