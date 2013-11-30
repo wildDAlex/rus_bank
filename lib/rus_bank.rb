@@ -11,10 +11,14 @@ class RusBank
 
   def CreditInfoByIntCodeXML(internal_code)
     params = { "InternalCode" => internal_code }
-    call(:credit_info_by_int_code_xml, params)[:credit_org_info][:co]
+    response = call(:credit_info_by_int_code_xml, params)
+    if response.nil?
+      nil
+    else
+      response[:credit_org_info][:co]
+    end
   end
 
-  # BIC must be specified as string, for ex. BicToIntCode("044585216")
   def BicToIntCode(bic)
     params = { "BicCode" => bic }
     call(:bic_to_int_code, params)
@@ -26,7 +30,11 @@ class RusBank
   end
 
   def call(method, params)
-    response = @client.call(method, message: params).to_hash
-    response[(method.to_s + "_response").to_sym][(method.to_s + "_result").to_sym]
+    response = @client.call(method, message: params).to_hash[(method.to_s + "_response").to_sym][(method.to_s + "_result").to_sym]
+    if response == "-1" or response.to_s.include?("NotFound")           # Разные методы сервиса возвращают ответ в разном формате
+      return nil
+    else
+      response
+    end
   end
 end
