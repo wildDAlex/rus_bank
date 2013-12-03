@@ -26,7 +26,7 @@ Gem::Specification.new do |s|
     "VERSION",
     "lib/rus_bank.rb",
     "rus_bank.gemspec",
-    "test/helper.rb",
+    "test/test_helper.rb",
     "test/test_rus_bank.rb"
   ]
   s.homepage = "http://github.com/wildDAlex/rus_bank"
@@ -40,20 +40,20 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<savon>, ["~> 2.0"])
-      s.add_development_dependency(%q<rspec>, [">= 0"])
+      s.add_development_dependency(%q<shoulda>, [">= 0"])
       s.add_development_dependency(%q<rdoc>, ["~> 3.12"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.8.7"])
     else
       s.add_dependency(%q<savon>, ["~> 2.0"])
-      s.add_dependency(%q<rspec>, [">= 0"])
+      s.add_dependency(%q<shoulda>, [">= 0"])
       s.add_dependency(%q<rdoc>, ["~> 3.12"])
       s.add_dependency(%q<bundler>, ["~> 1.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.8.7"])
     end
   else
     s.add_dependency(%q<savon>, ["~> 2.0"])
-    s.add_dependency(%q<rspec>, [">= 0"])
+    s.add_dependency(%q<shoulda>, [">= 0"])
     s.add_dependency(%q<rdoc>, ["~> 3.12"])
     s.add_dependency(%q<bundler>, ["~> 1.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.8.7"])
