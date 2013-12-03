@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["wilDAlex"]
-  s.date = "2013-11-30"
+  s.date = "2013-12-03"
   s.description = "\u{41d}\u{430}\u{431}\u{43e}\u{440} ruby-\u{43c}\u{435}\u{442}\u{43e}\u{434}\u{43e}\u{432} \u{434}\u{43b}\u{44f} \u{440}\u{430}\u{431}\u{43e}\u{442}\u{44b} \u{441} \u{441}\u{435}\u{440}\u{432}\u{438}\u{441}\u{430}\u{43c}\u{438} \u{426}\u{411} \u{420}\u{424}"
   s.email = "some@wild-x.ru"
   s.extra_rdoc_files = [
@@ -40,20 +40,20 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<savon>, ["~> 2.0"])
-      s.add_development_dependency(%q<shoulda>, [">= 0"])
+      s.add_development_dependency(%q<rspec>, [">= 0"])
       s.add_development_dependency(%q<rdoc>, ["~> 3.12"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.8.7"])
     else
       s.add_dependency(%q<savon>, ["~> 2.0"])
-      s.add_dependency(%q<shoulda>, [">= 0"])
+      s.add_dependency(%q<rspec>, [">= 0"])
       s.add_dependency(%q<rdoc>, ["~> 3.12"])
       s.add_dependency(%q<bundler>, ["~> 1.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.8.7"])
     end
   else
     s.add_dependency(%q<savon>, ["~> 2.0"])
-    s.add_dependency(%q<shoulda>, [">= 0"])
+    s.add_dependency(%q<rspec>, [">= 0"])
     s.add_dependency(%q<rdoc>, ["~> 3.12"])
     s.add_dependency(%q<bundler>, ["~> 1.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.8.7"])
