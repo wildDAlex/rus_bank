@@ -40,6 +40,20 @@ class RusBank
     end
   end
 
+  def SearchByNameXML(bank_name)    # Метод возвращает nil, либо массив хэшей
+    params = { "NamePart" => bank_name }
+    response = call(:search_by_name_xml, params)
+    if response[:credit_org][:enum_credits].nil?
+      nil
+    else
+      if not response[:credit_org][:enum_credits].instance_of?(Array)      # Если найдена одна запись, возвращается единичный хэш,
+        [response[:credit_org][:enum_credits]]                             # если более одной, то массив хешей,
+      else                                                                 # поэтому одну запись преобразуем к массиву из одного хэша.
+        response[:credit_org][:enum_credits]
+      end
+    end
+  end
+
   def EnumBicXML
     response = call(:enum_bic_xml)
     if response.nil?
