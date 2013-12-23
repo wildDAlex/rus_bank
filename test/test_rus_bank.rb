@@ -14,6 +14,8 @@ class TestRusBank < Test::Unit::TestCase
       INVALID_INT_CODE = "450000650999999"
       VALID_REG_NUMBER = "316"
       INVALID_REG_NUMBER = "289375237580009"
+      VALID_REGION = "16"
+      INVALID_REGION = "999"
       VALID_ORG_NAME = "ХКФ БАНК"
     end
 
@@ -54,6 +56,11 @@ class TestRusBank < Test::Unit::TestCase
       assert(@cbr.RegionsEnumXML.length > 70, "This should return more than 70 elements")
     end
 
+    should ":search_by_region_code_xml returns array of elements" do
+      assert(@cbr.SearchByRegionCodeXML(VALID_REGION).instance_of?(Array), "This should be array")
+      assert(@cbr.SearchByRegionCodeXML(VALID_REGION).length > 10, "This should return more than 10 banks")
+      assert_equal(nil, @cbr.SearchByRegionCodeXML(INVALID_REGION), "Should return nil if value not found")
+    end
 
     should ":credit_info_by_int_code_xml return correct bank" do
       assert_equal(VALID_REG_NUMBER, @cbr.CreditInfoByIntCodeXML(VALID_INT_CODE)[:reg_number])

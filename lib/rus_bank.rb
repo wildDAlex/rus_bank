@@ -30,6 +30,16 @@ class RusBank
     call(:int_code_to_reg_num, params)
   end
 
+  def SearchByRegionCodeXML(region_code)
+    params = { "RegCode" => region_code }
+    response = call(:search_by_region_code_xml, params)
+    if response.nil?
+      nil
+    else
+      response[:credit_org][:enum_credits]
+    end
+  end
+
   def EnumBicXML
     response = call(:enum_bic_xml)
     if response.nil?
