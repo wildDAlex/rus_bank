@@ -11,7 +11,7 @@ class TestRusBank < Test::Unit::TestCase
       VALID_BIC = "044585216"
       INVALID_BIC = "0445852169999"
       VALID_INT_CODE = "450000650"
-      INVALID_INT_CODE = "4500006509999999"
+      INVALID_INT_CODE = "450000650999999"
       VALID_REG_NUMBER = "316"
       INVALID_REG_NUMBER = "289375237580009"
       VALID_ORG_NAME = "ХКФ БАНК"
@@ -37,6 +37,11 @@ class TestRusBank < Test::Unit::TestCase
     should ":reg_num_to_int_code return correct value" do
       assert_equal(VALID_INT_CODE, @cbr.RegNumToIntCode(VALID_REG_NUMBER))
       assert_equal(nil, @cbr.RegNumToIntCode(INVALID_REG_NUMBER), "Should return nil if value not found")
+    end
+
+    should ":int_code_to_reg_num return correct value" do
+      assert_equal(VALID_REG_NUMBER, @cbr.IntCodeToRegNum(VALID_INT_CODE))
+      assert_equal(nil, @cbr.IntCodeToRegNum(INVALID_INT_CODE), "Should return nil if value not found")
     end
 
     should ":enum_bic_xml returns array of elements" do
