@@ -49,6 +49,12 @@ class TestRusBank < Test::Unit::TestCase
       assert(@cbr.EnumBicXML.length > 100, "This should return more than 100 elements")
     end
 
+    should ":regions_enum_xml returns array of elements" do
+      assert(@cbr.RegionsEnumXML.instance_of?(Array), "This should be array")
+      assert(@cbr.RegionsEnumXML.length > 70, "This should return more than 70 elements")
+    end
+
+
     should ":credit_info_by_int_code_xml return correct bank" do
       assert_equal(VALID_REG_NUMBER, @cbr.CreditInfoByIntCodeXML(VALID_INT_CODE)[:reg_number])
       assert_equal(VALID_ORG_NAME, @cbr.CreditInfoByIntCodeXML(VALID_INT_CODE)[:org_name])

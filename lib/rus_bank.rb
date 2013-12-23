@@ -39,6 +39,15 @@ class RusBank
     end
   end
 
+  def RegionsEnumXML
+    response = call(:regions_enum_xml)
+    if response.nil?
+      nil
+    else
+      response[:regions_enum][:rgid]
+    end
+  end
+
   def CreditInfoByIntCodeXML(internal_code)
     params = { "InternalCode" => internal_code }
     response = call(:credit_info_by_int_code_xml, params)
