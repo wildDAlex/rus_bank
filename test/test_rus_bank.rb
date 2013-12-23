@@ -34,6 +34,11 @@ class TestRusBank < Test::Unit::TestCase
       assert_equal(nil, @cbr.BicToRegNumber(INVALID_BIC), "Should return nil if value not found")
     end
 
+    should ":reg_num_to_int_code return correct value" do
+      assert_equal(VALID_INT_CODE, @cbr.RegNumToIntCode(VALID_REG_NUMBER))
+      assert_equal(nil, @cbr.RegNumToIntCode(INVALID_REG_NUMBER), "Should return nil if value not found")
+    end
+
     should ":enum_bic_xml returns array of elements" do
       assert(@cbr.EnumBicXML.instance_of?(Array), "This should be array")
       assert(@cbr.EnumBicXML.length > 100, "This should return more than 100 elements")

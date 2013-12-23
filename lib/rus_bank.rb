@@ -20,6 +20,11 @@ class RusBank
     call(:bic_to_reg_number, params)
   end
 
+  def RegNumToIntCode(reg_num)
+    params = { "RegNumber" => reg_num }
+    call(:reg_num_to_int_code, params)
+  end
+
   def EnumBicXML
     response = call(:enum_bic_xml)
     if response.nil?
