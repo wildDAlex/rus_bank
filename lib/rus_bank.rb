@@ -33,25 +33,13 @@ class RusBank
   def SearchByRegionCodeXML(region_code)
     params = { "RegCode" => region_code }
     response = call(:search_by_region_code_xml, params)
-    if response.nil?
-      nil
-    else
-      response[:credit_org][:enum_credits]
-    end
+    get_array(response)
   end
 
   def SearchByNameXML(bank_name)    # Метод возвращает nil, либо массив хэшей
     params = { "NamePart" => bank_name }
     response = call(:search_by_name_xml, params)
-    if response[:credit_org][:enum_credits].nil?
-      nil
-    else
-      if not response[:credit_org][:enum_credits].instance_of?(Array)      # Если найдена одна запись, возвращается единичный хэш,
-        [response[:credit_org][:enum_credits]]                             # если более одной, то массив хешей,
-      else                                                                 # поэтому одну запись преобразуем к массиву из одного хэша.
-        response[:credit_org][:enum_credits]
-      end
-    end
+    get_array(response)
   end
 
   def EnumBicXML
@@ -90,4 +78,19 @@ class RusBank
       response
     end
   end
+
+  private
+
+  def get_array(response)
+    if response[:credit_org][:enum_credits].nil?
+      nil
+    else
+      if not response[:credit_org][:enum_credits].instance_of?(Array)      # Если найдена одна запись, возвращается единичный хэш,
+        [response[:credit_org][:enum_credits]]                             # если более одной, то массив хешей,
+      else                                                                 # поэтому одну запись преобразуем к массиву из одного хэша.
+        response[:credit_org][:enum_credits]
+      end
+    end
+  end
+
 end

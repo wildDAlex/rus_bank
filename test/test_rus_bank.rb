@@ -1,23 +1,21 @@
 require "../test/test_helper"
 
 class TestRusBank < Test::Unit::TestCase
-  #should "probably rename this file and start testing for real" do
-  #  flunk "hey buddy, you should probably rename this file and start testing for real"
-  #end
-  #
+
+  VALID_BIC = "044585216"
+  INVALID_BIC = "0445852169999"
+  VALID_INT_CODE = "450000650"
+  INVALID_INT_CODE = "450000650999999"
+  VALID_REG_NUMBER = "316"
+  INVALID_REG_NUMBER = "289375237580009"
+  VALID_REGION = "16"
+  INVALID_REGION = "999"
+  INVALID_ORG_NAME = "djhgsjdlksl"
+  VALID_ORG_NAME = "ХКФ БАНК"
+
   context "RusBank" do
     setup do
       @cbr = RusBank.new
-      VALID_BIC = "044585216"
-      INVALID_BIC = "0445852169999"
-      VALID_INT_CODE = "450000650"
-      INVALID_INT_CODE = "450000650999999"
-      VALID_REG_NUMBER = "316"
-      INVALID_REG_NUMBER = "289375237580009"
-      VALID_REGION = "16"
-      INVALID_REGION = "999"
-      INVALID_ORG_NAME = "djhgsjdlksl"
-      VALID_ORG_NAME = "ХКФ БАНК"
     end
 
     should "Service return implemented methods" do
