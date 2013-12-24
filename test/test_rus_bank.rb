@@ -73,11 +73,10 @@ class TestRusBank < Test::Unit::TestCase
       assert_equal(nil, @cbr.GetOfficesXML(INVALID_INT_CODE), "Should return nil if value not found")
     end
 
-
     should ":credit_info_by_int_code_xml return correct bank" do
-      assert_equal(VALID_REG_NUMBER, @cbr.CreditInfoByIntCodeXML(VALID_INT_CODE)[:reg_number])
-      assert_equal(VALID_ORG_NAME, @cbr.CreditInfoByIntCodeXML(VALID_INT_CODE)[:org_name])
-      assert_equal(VALID_BIC, @cbr.CreditInfoByIntCodeXML(VALID_INT_CODE)[:bic])
+      assert_equal(VALID_REG_NUMBER, @cbr.CreditInfoByIntCodeXML(VALID_INT_CODE)[:co][:reg_number])
+      assert_equal(VALID_ORG_NAME, @cbr.CreditInfoByIntCodeXML(VALID_INT_CODE)[:co][:org_name])
+      assert_equal(VALID_BIC, @cbr.CreditInfoByIntCodeXML(VALID_INT_CODE)[:co][:bic])
       assert_equal(nil, @cbr.CreditInfoByIntCodeXML(INVALID_INT_CODE), "Should return nil if value not found")
     end
 

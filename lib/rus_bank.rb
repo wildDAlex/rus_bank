@@ -33,45 +33,29 @@ class RusBank
   def SearchByRegionCodeXML(region_code)
     params = { "RegCode" => region_code }
     response = call(:search_by_region_code_xml, params)
-    get_array(response)
-  end
-
-  def GetOfficesXML(int_code)
-    params = { "IntCode" => int_code }
-    response = call(:get_offices_xml, params)
-    if response[:co_offices][:offices].nil?
-      nil
-    else
-      if not response[:co_offices][:offices].instance_of?(Array)
-        [response[:co_offices][:offices]]
-      else
-        response[:co_offices][:offices]
-      end
-    end
+    get_array(response, :credit_org, :enum_credits)
   end
 
   def SearchByNameXML(bank_name)    # Метод возвращает nil, либо массив хэшей
     params = { "NamePart" => bank_name }
     response = call(:search_by_name_xml, params)
-    get_array(response)
+    get_array(response, :credit_org, :enum_credits)
+  end
+
+  def GetOfficesXML(int_code)
+    params = { "IntCode" => int_code }
+    response = call(:get_offices_xml, params)
+    get_array(response, :co_offices, :offices)
   end
 
   def EnumBicXML
     response = call(:enum_bic_xml)
-    if response.nil?
-      nil
-    else
-      response[:enum_bic][:bic]
-    end
+    get_array(response, :enum_bic, :bic)
   end
 
   def RegionsEnumXML
     response = call(:regions_enum_xml)
-    if response.nil?
-      nil
-    else
-      response[:regions_enum][:rgid]
-    end
+    get_array(response, :regions_enum, :rgid)
   end
 
   def CreditInfoByIntCodeXML(internal_code)
@@ -80,7 +64,7 @@ class RusBank
     if response.nil?
       nil
     else
-      response[:credit_org_info][:co]
+      response[:credit_org_info]
     end
   end
 
@@ -95,14 +79,15 @@ class RusBank
 
   private
 
-  def get_array(response)
-    if response[:credit_org][:enum_credits].nil?
+  def get_array(response, *params)
+    node = params.inject(response){|inner_node, param| inner_node[param]}     # Вытягиваем вложенные ноды
+    if node.nil?
       nil
     else
-      if not response[:credit_org][:enum_credits].instance_of?(Array)      # Если найдена одна запись, возвращается единичный хэш,
-        [response[:credit_org][:enum_credits]]                             # если более одной, то массив хешей,
-      else                                                                 # поэтому одну запись преобразуем к массиву из одного хэша.
-        response[:credit_org][:enum_credits]
+      if not node.instance_of?(Array)      # Если найдена одна запись, возвращается единичный хэш,
+        [node]                             # если более одной, то массив хешей,
+      else                                 # поэтому одну запись преобразуем к массиву из одного хэша.
+        node
       end
     end
   end
