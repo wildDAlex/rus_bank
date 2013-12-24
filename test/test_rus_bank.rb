@@ -67,6 +67,13 @@ class TestRusBank < Test::Unit::TestCase
       assert_equal(nil, @cbr.SearchByNameXML(INVALID_ORG_NAME), "Should return nil if value not found")
     end
 
+    should ":get_offices_xml returns array of elements" do
+      assert(@cbr.GetOfficesXML(VALID_INT_CODE).instance_of?(Array), "This should be array")
+      assert(@cbr.GetOfficesXML(VALID_INT_CODE).length > 2, "This should return more than 2 offices")
+      assert_equal(nil, @cbr.GetOfficesXML(INVALID_INT_CODE), "Should return nil if value not found")
+    end
+
+
     should ":credit_info_by_int_code_xml return correct bank" do
       assert_equal(VALID_REG_NUMBER, @cbr.CreditInfoByIntCodeXML(VALID_INT_CODE)[:reg_number])
       assert_equal(VALID_ORG_NAME, @cbr.CreditInfoByIntCodeXML(VALID_INT_CODE)[:org_name])

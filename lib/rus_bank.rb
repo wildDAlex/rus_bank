@@ -36,6 +36,20 @@ class RusBank
     get_array(response)
   end
 
+  def GetOfficesXML(int_code)
+    params = { "IntCode" => int_code }
+    response = call(:get_offices_xml, params)
+    if response[:co_offices][:offices].nil?
+      nil
+    else
+      if not response[:co_offices][:offices].instance_of?(Array)
+        [response[:co_offices][:offices]]
+      else
+        response[:co_offices][:offices]
+      end
+    end
+  end
+
   def SearchByNameXML(bank_name)    # Метод возвращает nil, либо массив хэшей
     params = { "NamePart" => bank_name }
     response = call(:search_by_name_xml, params)
