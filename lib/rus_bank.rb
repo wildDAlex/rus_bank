@@ -48,6 +48,12 @@ class RusBank
     get_array(response, :co_offices, :offices)
   end
 
+  def GetOfficesByRegionXML(region_code)
+    params = { "RegCode" => region_code }
+    response = call(:get_offices_by_region_xml, params)
+    get_array(response, :co_offices, :offices)
+  end
+
   def EnumBicXML
     response = call(:enum_bic_xml)
     get_array(response, :enum_bic, :bic)
