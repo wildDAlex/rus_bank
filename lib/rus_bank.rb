@@ -30,41 +30,41 @@ class RusBank
     call(:int_code_to_reg_num, params)
   end
 
-  def SearchByRegionCodeXML(region_code)
+  def SearchByRegionCode(region_code)
     params = { "RegCode" => region_code }
     response = call(:search_by_region_code_xml, params)
     get_array(response, :credit_org, :enum_credits)
   end
 
-  def SearchByNameXML(bank_name)    # Метод возвращает nil, либо массив хэшей
+  def SearchByName(bank_name)    # Метод возвращает nil, либо массив хэшей
     params = { "NamePart" => bank_name }
     response = call(:search_by_name_xml, params)
     get_array(response, :credit_org, :enum_credits)
   end
 
-  def GetOfficesXML(int_code)
+  def GetOffices(int_code)
     params = { "IntCode" => int_code }
     response = call(:get_offices_xml, params)
     get_array(response, :co_offices, :offices)
   end
 
-  def GetOfficesByRegionXML(region_code)
+  def GetOfficesByRegion(region_code)
     params = { "RegCode" => region_code }
     response = call(:get_offices_by_region_xml, params)
     get_array(response, :co_offices, :offices)
   end
 
-  def EnumBicXML
+  def EnumBic
     response = call(:enum_bic_xml)
     get_array(response, :enum_bic, :bic)
   end
 
-  def RegionsEnumXML
+  def RegionsEnum
     response = call(:regions_enum_xml)
     get_array(response, :regions_enum, :rgid)
   end
 
-  def CreditInfoByIntCodeXML(internal_code)
+  def CreditInfoByIntCode(internal_code)
     params = { "InternalCode" => internal_code }
     response = call(:credit_info_by_int_code_xml, params)
     if response.nil?

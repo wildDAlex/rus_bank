@@ -46,44 +46,44 @@ class TestRusBank < Test::Unit::TestCase
     end
 
     should ":enum_bic_xml returns array of elements" do
-      assert(@cbr.EnumBicXML.instance_of?(Array), "This should be array")
-      assert(@cbr.EnumBicXML.length > 100, "This should return more than 100 elements")
+      assert(@cbr.EnumBic.instance_of?(Array), "This should be array")
+      assert(@cbr.EnumBic.length > 100, "This should return more than 100 elements")
     end
 
     should ":regions_enum_xml returns array of elements" do
-      assert(@cbr.RegionsEnumXML.instance_of?(Array), "This should be array")
-      assert(@cbr.RegionsEnumXML.length > 70, "This should return more than 70 elements")
+      assert(@cbr.RegionsEnum.instance_of?(Array), "This should be array")
+      assert(@cbr.RegionsEnum.length > 70, "This should return more than 70 elements")
     end
 
     should ":search_by_region_code_xml returns array of elements" do
-      assert(@cbr.SearchByRegionCodeXML(VALID_REGION).instance_of?(Array), "This should be array")
-      assert(@cbr.SearchByRegionCodeXML(VALID_REGION).length > 10, "This should return more than 10 banks")
-      assert_equal(nil, @cbr.SearchByRegionCodeXML(INVALID_REGION), "Should return nil if value not found")
+      assert(@cbr.SearchByRegionCode(VALID_REGION).instance_of?(Array), "This should be array")
+      assert(@cbr.SearchByRegionCode(VALID_REGION).length > 10, "This should return more than 10 banks")
+      assert_equal(nil, @cbr.SearchByRegionCode(INVALID_REGION), "Should return nil if value not found")
     end
 
     should ":search_by_name_xml return correct value" do
-      assert(@cbr.SearchByNameXML(VALID_ORG_NAME).instance_of?(Array), "This should be array")
-      assert_equal(VALID_ORG_NAME, @cbr.SearchByNameXML(VALID_ORG_NAME).first[:org_name])
-      assert_equal(nil, @cbr.SearchByNameXML(INVALID_ORG_NAME), "Should return nil if value not found")
+      assert(@cbr.SearchByName(VALID_ORG_NAME).instance_of?(Array), "This should be array")
+      assert_equal(VALID_ORG_NAME, @cbr.SearchByName(VALID_ORG_NAME).first[:org_name])
+      assert_equal(nil, @cbr.SearchByName(INVALID_ORG_NAME), "Should return nil if value not found")
     end
 
     should ":get_offices_xml returns array of elements" do
-      assert(@cbr.GetOfficesXML(VALID_INT_CODE).instance_of?(Array), "This should be array")
-      assert(@cbr.GetOfficesXML(VALID_INT_CODE).length > 2, "This should return more than 2 offices")
-      assert_equal(nil, @cbr.GetOfficesXML(INVALID_INT_CODE), "Should return nil if value not found")
+      assert(@cbr.GetOffices(VALID_INT_CODE).instance_of?(Array), "This should be array")
+      assert(@cbr.GetOffices(VALID_INT_CODE).length > 2, "This should return more than 2 offices")
+      assert_equal(nil, @cbr.GetOffices(INVALID_INT_CODE), "Should return nil if value not found")
     end
 
     should ":get_offices_by_region_xml returns array of elements" do
-      assert(@cbr.GetOfficesByRegionXML(VALID_REGION).instance_of?(Array), "This should be array")
-      assert(@cbr.GetOfficesByRegionXML(VALID_REGION).length > 10, "This should return more than 10 offices")
-      assert_equal(nil, @cbr.GetOfficesByRegionXML(INVALID_REGION), "Should return nil if value not found")
+      assert(@cbr.GetOfficesByRegion(VALID_REGION).instance_of?(Array), "This should be array")
+      assert(@cbr.GetOfficesByRegion(VALID_REGION).length > 10, "This should return more than 10 offices")
+      assert_equal(nil, @cbr.GetOfficesByRegion(INVALID_REGION), "Should return nil if value not found")
     end
 
     should ":credit_info_by_int_code_xml return correct bank" do
-      assert_equal(VALID_REG_NUMBER, @cbr.CreditInfoByIntCodeXML(VALID_INT_CODE)[:co][:reg_number])
-      assert_equal(VALID_ORG_NAME, @cbr.CreditInfoByIntCodeXML(VALID_INT_CODE)[:co][:org_name])
-      assert_equal(VALID_BIC, @cbr.CreditInfoByIntCodeXML(VALID_INT_CODE)[:co][:bic])
-      assert_equal(nil, @cbr.CreditInfoByIntCodeXML(INVALID_INT_CODE), "Should return nil if value not found")
+      assert_equal(VALID_REG_NUMBER, @cbr.CreditInfoByIntCode(VALID_INT_CODE)[:co][:reg_number])
+      assert_equal(VALID_ORG_NAME, @cbr.CreditInfoByIntCode(VALID_INT_CODE)[:co][:org_name])
+      assert_equal(VALID_BIC, @cbr.CreditInfoByIntCode(VALID_INT_CODE)[:co][:bic])
+      assert_equal(nil, @cbr.CreditInfoByIntCode(INVALID_INT_CODE), "Should return nil if value not found")
     end
 
   end
