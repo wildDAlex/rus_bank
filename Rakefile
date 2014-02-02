@@ -19,7 +19,7 @@ Jeweler::Tasks.new do |gem|
   gem.license = "MIT"
   gem.summary = "Ruby-интерфейс для получения информации по российским банкам"
   gem.description = "Набор ruby-методов для работы с сервисами ЦБ РФ"
-  gem.email = "some@wild-x.ru"
+  gem.email = "wilddalex@wild-x.ru"
   gem.authors = ["wilDAlex"]
   # dependencies defined in Gemfile
 end

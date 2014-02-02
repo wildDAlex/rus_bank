@@ -1,16 +1,38 @@
 = rus_bank
 
-Description goes here.
+Руби-интерфейс к API Банка России.
 
-== Contributing to rus_bank
- 
-* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
-* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it.
-* Fork the project.
-* Start a feature/bugfix branch.
-* Commit and push until you are happy with your contribution.
-* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
-* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+Установка
+```
+$ gem install rus_bank
+```
+Либо добавить в gemfile
+```
+gem 'rus_bank'
+```
+
+Пример использования
+```
+require 'rus_bank'
+
+bank = RusBank.new
+bank.BicToIntCode(:your_bic)
+```
+Описание доступных методов тут - http://rubydoc.info/gems/rus_bank/RusBank
+Можно вызывать не реализованные в геме методы
+```
+require 'rus_bank'
+
+bank = RusBank.new
+bank.operations # Список доступных для вызова методов, включая не реализованные и те, что могут появиться на момент вызова.
+bank.call(:method, :params) # где :method - нужный метод, :params - хеш передаваемых методу параметров.
+```
+
+Надо сказать, что при каждом вызове метода гема 'дергается' внешний сервис. Это не лучший подход с точки зрения производительности,
+траффика и вообще ЦБ просит так не поступать. Было бы логичным иметь локальную базу для кеширования получаемой информации и
+обращаться к внешнему сервису только по мере необходимости.
+Гем, реализующий данную функцию для Rails - https://github.com/wildDAlex/rus_bank_rails
+
 
 == Copyright
 
