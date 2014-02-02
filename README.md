@@ -1,5 +1,6 @@
 # rus_bank
 
+[![Gem Version](https://badge.fury.io/rb/rus_bank.png)](http://badge.fury.io/rb/rus_bank)
 Руби-интерфейс к API Банка России.
 
 Установка:
