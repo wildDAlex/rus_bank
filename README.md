@@ -1,28 +1,31 @@
-= rus_bank
+# rus_bank
 
 Руби-интерфейс к API Банка России.
 
-Установка
+Установка:
 
     $ gem install rus_bank
 
-Либо добавить в gemfile
+Либо добавить в gemfile:
 
     gem 'rus_bank'
 
-Пример использования
+Пример использования:
 
     require 'rus_bank'
     bank = RusBank.new
     bank.BicToIntCode(:your_bic)
 
 Описание доступных методов тут - http://rubydoc.info/gems/rus_bank/RusBank
-Можно вызывать не реализованные в геме методы
+Можно вызывать не реализованные в геме методы:
 
     require 'rus_bank'
     bank = RusBank.new
-    bank.operations # Список доступных для вызова методов, включая не реализованные и те, что могут появиться на момент вызова.
-    bank.call(:method, :params) # где :method - нужный метод, :params - хеш передаваемых методу параметров.
+    bank.operations # Список доступных для вызова методов,
+                    # включая не реализованные и те,
+                    # что могут появиться на момент вызова.
+    bank.call(:method, :params) # где :method - нужный метод,
+                                # :params - хеш передаваемых методу параметров.
 
 Надо сказать, что при каждом вызове метода гема 'дергается' внешний сервис. Это не лучший подход с точки зрения производительности,
 траффика и вообще ЦБ просит так не поступать. Было бы логичным иметь локальную базу для кеширования получаемой информации и
@@ -30,7 +33,7 @@
 Гем, реализующий данную функцию для Rails - https://github.com/wildDAlex/rus_bank_rails
 
 
-== Copyright
+## Copyright
 
 Copyright (c) 2013 Denis Aleksandrov. See LICENSE.txt for
 further details.
