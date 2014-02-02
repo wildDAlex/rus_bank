@@ -1,6 +1,6 @@
 = rus_bank
 
-Руби-интерфейс к API Банка России.
+## Руби-интерфейс к API Банка России.
 
 Установка
 ```
@@ -14,15 +14,14 @@ gem 'rus_bank'
 Пример использования
 ```
 require 'rus_bank'
-
 bank = RusBank.new
 bank.BicToIntCode(:your_bic)
 ```
+
 Описание доступных методов тут - http://rubydoc.info/gems/rus_bank/RusBank
 Можно вызывать не реализованные в геме методы
 ```
 require 'rus_bank'
-
 bank = RusBank.new
 bank.operations # Список доступных для вызова методов, включая не реализованные и те, что могут появиться на момент вызова.
 bank.call(:method, :params) # где :method - нужный метод, :params - хеш передаваемых методу параметров.
