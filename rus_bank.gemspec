@@ -5,13 +5,13 @@
 
 Gem::Specification.new do |s|
   s.name = "rus_bank"
-  s.version = "0.9.2"
+  s.version = "0.9.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["wilDAlex"]
-  s.date = "2014-01-29"
+  s.date = "2014-02-02"
   s.description = "\u{41d}\u{430}\u{431}\u{43e}\u{440} ruby-\u{43c}\u{435}\u{442}\u{43e}\u{434}\u{43e}\u{432} \u{434}\u{43b}\u{44f} \u{440}\u{430}\u{431}\u{43e}\u{442}\u{44b} \u{441} \u{441}\u{435}\u{440}\u{432}\u{438}\u{441}\u{430}\u{43c}\u{438} \u{426}\u{411} \u{420}\u{424}"
-  s.email = "some@wild-x.ru"
+  s.email = "wilddalex@wild-x.ru"
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.rdoc"
