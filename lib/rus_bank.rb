@@ -57,14 +57,14 @@ class RusBank
   ##
   # Поиск по названию банка
 
-  def SearchByName(bank_name)    # Метод возвращает nil, либо массив хэшей
+  def SearchByName(bank_name)
     params = { "NamePart" => bank_name }
     response = call(:search_by_name_xml, params)
     get_array(response, :credit_org, :enum_credits)
   end
 
   ##
-  # Возвращает список отделений по внутреннему номеру банка
+  # Информация по филиальной сети кредитной орг. по вн.коду
 
   def GetOffices(int_code)
     params = { "IntCode" => int_code }
@@ -82,7 +82,7 @@ class RusBank
   end
 
   ##
-  # Полный список банков
+  # Данные по BIC кодам КО, без филиалов
 
   def EnumBic
     response = call(:enum_bic_xml)
